@@ -1,13 +1,49 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Form, Button} from 'semantic-ui-react'
+import {authenticateUser} from '../../Actions/userActions'
 
 class Login extends Component {
+    state = {
+        email: '',
+        password: ''
+    }
+
+    handleOnChange = (e) => {
+        this.setState({[e.target.name]:e.target.value})
+    }
+
+    handleOnSubmit = e => {
+        e.preventDefault()
+        fetch('http://localhost:3000/login',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                accept: 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.user){
+                // Swal.fire({icon: 'success', text:'Successfully Joined'})
+                this.props.authenticateUser(data)
+                localStorage.setItem('token', data.jwt)
+                // this.props.history.push('/topics')
+            }else {
+                // Swal.fire({icon: 'error', text: data.message.join('. ')})
+                alert(data.message)
+            }
+        })
+
+    }
+
     render() {
         return (
             <div>
-                <Form>
-                    <Form.Input type = 'text' placeholder = 'email'/>
+                <Form onSubmit = {this.handleOnSubmit}>
+                    <Form.Input type = 'text' placeholder = 'email' name = 'email' value = {this.state.email} onChange = {this.handleOnChange}/>
+                    <Form.Input type = 'password' placeholder = 'password' name = 'password' value = {this.state.password} onChange = {this.handleOnChange}/>
                     <Form.Input type= 'submit'/>
                 </Form>
             </div>
@@ -15,12 +51,5 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    
-})
 
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, {authenticateUser})(Login)

@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+
 import {BrowserRouter as Router} from 'react-router-dom'
+
 import combined from './Reducers/index'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
