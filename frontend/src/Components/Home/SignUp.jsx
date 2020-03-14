@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Form, Button} from 'semantic-ui-react'
 import {authenticateUser} from '../../Actions/userActions'
+import {withRouter} from 'react-router-dom'
 
 class SignUp extends Component {
     state = {
@@ -30,7 +31,7 @@ class SignUp extends Component {
             if(data.user){
                 localStorage.setItem('token', data.jwt)
                 this.props.authenticateUser(data)
-                // this.props.history.push('/topics')
+                this.props.history.push('/dashboard')
             }else {
                 alert(data.message)
             }
@@ -61,4 +62,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {authenticateUser})(SignUp)
+export default connect(mapStateToProps, {authenticateUser})(withRouter(SignUp))

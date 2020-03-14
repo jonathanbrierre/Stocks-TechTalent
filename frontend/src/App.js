@@ -6,6 +6,9 @@ import {Switch, Route, withRouter} from 'react-router-dom'
 
 import {connect} from 'react-redux'
 import {authenticateUser} from './Actions/userActions'
+import Dashboard from './Components/Display/Dashboard';
+import Search from './Components/Display/SearchComps/Search'
+
 class App extends React.Component{
 
   componentDidMount(){
@@ -31,6 +34,8 @@ class App extends React.Component{
       <div className="App">
         <Switch>
           <Route exact path = '/' render ={() => <Home/>} />
+          <Route exact path = '/dashboard' render ={() => <Dashboard/>} />
+          <Route exact path = '/search' render ={() => <Search/>} />
         </Switch>
       </div>
     )
