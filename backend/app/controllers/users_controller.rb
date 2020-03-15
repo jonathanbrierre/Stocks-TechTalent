@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized, only: [:persist, :update, :destroy]
+    before_action :authorized, only: [:persist, :update, :destroy, :buy]
 
     def create
         # byebug
@@ -11,6 +11,10 @@ class UsersController < ApplicationController
         else
             render json: { message: 'Failed to create user' }, status: :not_acceptable
         end
+    end
+
+    def buy 
+        byebug
     end
 
     def login 
@@ -33,6 +37,10 @@ class UsersController < ApplicationController
     private
     def user_params
         params.permit(:name, :email, :password)
+    end
+
+    def stock_params
+        params.permit(:symbol, :companyName, :latestPrice, :isUSMarketOpen)
     end
 
 end
