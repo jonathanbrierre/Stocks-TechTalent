@@ -9,11 +9,24 @@ class TickerSearch extends Component {
     handleOnChange = (e) => {
         this.setState({[e.target.name]:e.target.value})
     }
+
     handleOnSubmit = (e) => {
         e.preventDefault()
         fetch(`https://sandbox.iexapis.com/stable/stock/${this.state.ticker}/quote?token=Tsk_b531f7ca0a084372a434b5a3ec8fd4d7`)
-        .then(resp => resp.json())
-        .then(console.log)
+        .then(resp => {
+            if(resp.ok){
+                return resp.json()
+            }else{
+                throw Error(resp.statusText);
+            }
+        })
+        .then(data => {
+            this.props.getStock(data)
+        })
+        .catch(error => {
+            alert('Invalid Ticker Symbol')
+        })
+        
         this.setState({ticker: ''})
     }
 
