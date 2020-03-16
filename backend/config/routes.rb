@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login'
   get '/persist', to: 'users#persist'
   patch '/buy', to: 'users#buy'
-
+  
+  get '/stocks', to: 'stocks#stocks'
+  
   get '/profile', to: 'users#profile'
+  resources :stocks
+  resources :transactions
 end

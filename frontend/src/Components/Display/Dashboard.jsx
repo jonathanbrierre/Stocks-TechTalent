@@ -11,7 +11,7 @@ class Dashboard extends Component {
                 Hello {this.props.user.name} <br></br>
                 What would you like to do today? <br></br>
                 <Link to= '/search'> Search For Stock</Link> <br></br>
-                <Link> View Your Portfolio</Link> <br></br>
+                <Link to = '/portfolio'> View Your Portfolio</Link> <br></br>
                 <Link> View Your Past Transactions </Link>
             </div>
         )

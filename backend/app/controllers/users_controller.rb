@@ -14,7 +14,17 @@ class UsersController < ApplicationController
     end
 
     def buy 
-        byebug
+        # byebug
+        Transaction.create(user: @user, symbol: stock_params[:symbol], companyName: stock_params[:companyName], latestPrice: stock_params[:latestPrice], bought: true, quantity: params[:quantity].to_i)
+        @stock = Stock.find_by(user: @user, symbol: stock_params[:symbol])
+        if @stock 
+            @stock.update(quantity: @stock.quantity + params[:quantity].to_i)
+        else
+            Stock.create(user: @user, symbol: stock_params[:symbol], companyName: stock_params[:companyName], latestPrice: stock_params[:latestPrice], open: stock_params[:open], close: stock_params[:close], quantity: params[:quantity].to_i)
+        end
+
+        @user.update(cash: @user.cash - stock_params[:latestPrice]*params[:quantity].to_i)
+        render json: {user: UserSerializer.new(@user), stocks: @user.stocks, transactions: @user.transactions}
     end
 
     def login 
@@ -23,7 +33,7 @@ class UsersController < ApplicationController
         if @user && @user.authenticate(user_params[:password])
         
             @token = encode_token({ user_id: @user.id })
-            render json: { user: UserSerializer.new(@user), jwt: @token }, status: :accepted
+            render json: { user: UserSerializer.new(@user), jwt: @token, stocks: @user.stocks, transactions: @user.transactions }, status: :accepted
         else
             render json: { message: 'Invalid username or password' }, status: :unauthorized
         end
@@ -31,7 +41,7 @@ class UsersController < ApplicationController
     
     def persist 
         @token = encode_token({user_id: @user.id })
-        render json: { user: UserSerializer.new(@user), jwt: @token }, status: :accepted
+        render json: { user: UserSerializer.new(@user), jwt: @token, stocks: @user.stocks, transactions: @user.transactions }, status: :accepted
     end
 
     private
@@ -40,7 +50,7 @@ class UsersController < ApplicationController
     end
 
     def stock_params
-        params.permit(:symbol, :companyName, :latestPrice, :isUSMarketOpen)
+        params.require(:stock).permit(:symbol, :companyName, :latestPrice, :open, :close)
     end
 
 end

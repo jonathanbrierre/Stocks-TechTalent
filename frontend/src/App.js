@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {authenticateUser} from './Actions/userActions'
 import Dashboard from './Components/Display/Dashboard';
 import Search from './Components/Display/SearchComps/Search'
+import PortfolioContainer from './Components/Display/PortfolioComps/PortfolioContainer';
 
 class App extends React.Component{
 
@@ -36,6 +37,7 @@ class App extends React.Component{
           <Route exact path = '/' render ={() => <Home/>} />
           <Route exact path = '/dashboard' render ={() => <Dashboard/>} />
           <Route exact path = '/search' render ={() => <Search/>} />
+          <Route exact path = '/portfolio' render ={() => <PortfolioContainer/>} />
         </Switch>
       </div>
     )

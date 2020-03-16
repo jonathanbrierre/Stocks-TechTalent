@@ -21,11 +21,11 @@ class Search extends Component {
         
         return (
             <div>
-                Your Cash: {this.props.user.cash}
+                Your Cash: {this.props.user.cash ? (this.props.user.cash).toFixed(2):null}
                 <br></br>
                 <TickerSearch getStock = {this.getStock}/>
                 {this.state.stock.symbol ? <Result stock = {this.state.stock}/> : null} 
-                 <Link to = '/dashboard'> Back to Dashboard </Link>
+                <Link to = '/dashboard'> Back to Dashboard </Link>
             </div>
         )
     }

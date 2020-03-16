@@ -4,3 +4,10 @@ export const authenticateUser = (userObj) => {
         payload: userObj
     }
 }
+
+export const updateUser = userObj => {
+    return{
+        type: 'UPDATE_CASH',
+        payload: userObj
+    }
+}
