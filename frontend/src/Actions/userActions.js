@@ -11,3 +11,9 @@ export const updateUser = userObj => {
         payload: userObj
     }
 }
+
+export const logOut = () => {
+    return{
+        type: 'LOG_OUT'
+    }
+}

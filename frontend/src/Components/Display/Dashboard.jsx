@@ -12,7 +12,7 @@ class Dashboard extends Component {
                 What would you like to do today? <br></br>
                 <Link to= '/search'> Search For Stock</Link> <br></br>
                 <Link to = '/portfolio'> View Your Portfolio</Link> <br></br>
-                <Link> View Your Past Transactions </Link>
+                <Link to = '/transactions'> View Your Past Transactions </Link>
             </div>
         )
     }

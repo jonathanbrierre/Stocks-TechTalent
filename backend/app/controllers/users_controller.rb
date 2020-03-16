@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         if @user.valid?
             @user.update(cash: 5000.00)
             @token = encode_token({ user_id: @user.id })
-            render json: { user: UserSerializer.new(@user), jwt: @token  }, status: :created
+            render json: { user: UserSerializer.new(@user), jwt: @token, stocks: @user.stocks, transactions: @user.transactions }, status: :created
         else
             render json: { message: 'Failed to create user' }, status: :not_acceptable
         end

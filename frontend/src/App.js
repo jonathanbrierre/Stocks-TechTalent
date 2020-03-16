@@ -9,6 +9,7 @@ import {authenticateUser} from './Actions/userActions'
 import Dashboard from './Components/Display/Dashboard';
 import Search from './Components/Display/SearchComps/Search'
 import PortfolioContainer from './Components/Display/PortfolioComps/PortfolioContainer';
+import TransactionContainer from './Components/Display/TransactionComps/TransactionContainer';
 
 class App extends React.Component{
 
@@ -38,6 +39,7 @@ class App extends React.Component{
           <Route exact path = '/dashboard' render ={() => <Dashboard/>} />
           <Route exact path = '/search' render ={() => <Search/>} />
           <Route exact path = '/portfolio' render ={() => <PortfolioContainer/>} />
+          <Route exact path = '/transactions' render ={() => <TransactionContainer/>} />
         </Switch>
       </div>
     )
