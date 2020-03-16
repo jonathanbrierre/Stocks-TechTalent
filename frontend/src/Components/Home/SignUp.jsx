@@ -17,7 +17,7 @@ class SignUp extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
+        // console.log(this.state)
         fetch(`http://localhost:3000/signup`, {
             method: 'POST',
             headers: {
@@ -46,20 +46,18 @@ class SignUp extends Component {
     render() {
         return (
             <div>
+                <h4>Sign Up</h4>
                 <Form onSubmit = {this.handleOnSubmit}>
                     <Form.Input type = 'text' placeholder = 'name' value = {this.state.name} name = 'name' onChange = {this.handleOnChange}/>
                     <Form.Input type = 'text' placeholder = 'email' value = {this.state.email} name = 'email' onChange = {this.handleOnChange}/>
                     <Form.Input type = 'password' placeholder = 'password' value = {this.state.password} name = 'password' onChange = {this.handleOnChange}/>
-                    <Form.Input type= 'submit'/>
+                    <Button type= 'submit'>Submit</Button>
                 </Form>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({
-    
-})
 
 
-export default connect(mapStateToProps, {authenticateUser})(withRouter(SignUp))
+export default connect(null, {authenticateUser})(withRouter(SignUp))

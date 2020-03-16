@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {updateUser} from '../../../Actions/userActions'
+import {Form, Button} from 'semantic-ui-react'
 class Result extends Component {
     state = {
         quantity: ''
@@ -41,15 +42,16 @@ class Result extends Component {
     }
 
     render() {
-        console.log(this.props.stock)
+        // console.log(this.props.stock)
         return (
             <div>
                 <p>{this.props.stock.symbol} </p>
                 <p>{this.props.stock.companyName} </p>
                 <p>Price: ${this.props.stock.latestPrice}</p>
                 <p>Price per Quantity: ${(this.props.stock.latestPrice * this.state.quantity).toFixed(2)}</p>
-                <input type= 'number' onChange = {this.handleOnChange} value = {this.state.quantity} name = 'quantity' placeholder = 'Quantity'/>
-                <button onClick = {this.handleOnClick}>Buy Stock</button>
+                <Form.Input type= 'number' onChange = {this.handleOnChange} value = {this.state.quantity} name = 'quantity' placeholder = 'Quantity'/>
+                <br></br>
+                <Button onClick = {this.handleOnClick}>Buy Stock</Button>
             </div>
         )
     }

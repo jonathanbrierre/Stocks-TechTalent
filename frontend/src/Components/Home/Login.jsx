@@ -41,10 +41,11 @@ class Login extends Component {
     render() {
         return (
             <div>
+                <h4>Log In</h4>
                 <Form onSubmit = {this.handleOnSubmit}>
                     <Form.Input type = 'text' placeholder = 'email' name = 'email' value = {this.state.email} onChange = {this.handleOnChange}/>
                     <Form.Input type = 'password' placeholder = 'password' name = 'password' value = {this.state.password} onChange = {this.handleOnChange}/>
-                    <Form.Input type= 'submit'/>
+                    <Button type= 'submit'>Submit</Button>
                 </Form>
             </div>
         )

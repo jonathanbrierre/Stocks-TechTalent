@@ -1,1 +1,13 @@
 
+.login{
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20vh;
+}
+
+.homeAuth:hover{
+    color: blue;
+    cursor: pointer;
+}

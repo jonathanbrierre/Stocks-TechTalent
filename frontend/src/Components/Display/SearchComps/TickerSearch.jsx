@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import {Form, Button} from 'semantic-ui-react'
 class TickerSearch extends Component {
     state = {
         ticker: ''
@@ -12,7 +12,7 @@ class TickerSearch extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault()
-        fetch(`https://sandbox.iexapis.com/stable/stock/${this.state.ticker}/quote?token=Tsk_b531f7ca0a084372a434b5a3ec8fd4d7`)
+        fetch(`https://cloud.iexapis.com/stable/stock/${this.state.ticker}/quote?token=pk_ea86410582414536bef212f60b3d7975`)
         .then(resp => {
             if(resp.ok){
                 return resp.json()
@@ -26,17 +26,17 @@ class TickerSearch extends Component {
         .catch(error => {
             alert('Invalid Ticker Symbol')
         })
-        
+
         this.setState({ticker: ''})
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit = {this.handleOnSubmit}>
-                    <input type = 'text' placeholder = 'Input Ticker Symbol' name = 'ticker' onChange = {this.handleOnChange} value = {this.state.ticker}/>
-                    <input type = 'submit'/>
-                </form>
+            <div style = {{width: '50%', textAlign: 'right'}}>
+                <Form onSubmit = {this.handleOnSubmit}>
+                    <Form.Input type = 'text' placeholder = 'Input Ticker Symbol' name = 'ticker' onChange = {this.handleOnChange} value = {this.state.ticker}/>
+                    <Button type = 'submit'>Submit</Button>
+                </Form>
             </div>
         )
     }

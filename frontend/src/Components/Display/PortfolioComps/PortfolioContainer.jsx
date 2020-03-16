@@ -6,13 +6,9 @@ import NavBar from '../NavBar'
 
 class PortfolioContainer extends Component {
 
-    componentDidMount(){
-        console.log(this.props.stocks)
-    }
-
     render() {
         return (
-            <div>
+            <div style = {{paddingLeft: '5vw'}}>
                 <NavBar/>
                 <h2>Portfolio</h2>
                 {this.props.stocks.map(stock => <Stock key = {stock.id} stock = {stock}/>)}
