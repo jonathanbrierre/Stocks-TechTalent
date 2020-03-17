@@ -16,7 +16,7 @@ class App extends React.Component{
   componentDidMount(){
     if(localStorage.getItem('token')){
         let token = localStorage.getItem('token')
-        fetch('http://localhost:3000/persist',{
+        fetch('https://tech-talent-stocks.herokuapp.com/persist',{
             headers: {
                 'Authorization': `bearer  ${token}`
             }
@@ -31,11 +31,20 @@ class App extends React.Component{
       }
 }
 
+  landingPage = () => {
+    let token = localStorage.getItem('token')
+    if(token){
+      return <Dashboard/>
+    }else{
+      return <Home/>
+    }
+  }
+
     render(){
       return (
       <div className="App">
         <Switch>
-          <Route exact path = '/' render ={() => <Home/>} />
+          <Route exact path = '/' render ={this.landingPage} />
           <Route exact path = '/dashboard' render ={() => <Dashboard/>} />
           <Route exact path = '/search' render ={() => <Search/>} />
           <Route exact path = '/portfolio' render ={() => <PortfolioContainer/>} />

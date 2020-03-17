@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {Form, Button} from 'semantic-ui-react'
 class TickerSearch extends Component {
     state = {
@@ -42,12 +41,5 @@ class TickerSearch extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    
-})
 
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TickerSearch)
+export default TickerSearch

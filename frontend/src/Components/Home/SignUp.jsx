@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {Form, Button} from 'semantic-ui-react'
 import {authenticateUser} from '../../Actions/userActions'
 import {withRouter} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 class SignUp extends Component {
     state = {
@@ -18,7 +19,7 @@ class SignUp extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         // console.log(this.state)
-        fetch(`http://localhost:3000/signup`, {
+        fetch(`https://tech-talent-stocks.herokuapp.com/signup`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -29,11 +30,12 @@ class SignUp extends Component {
         .then(resp => resp.json())
         .then(data =>{
             if(data.user){
+                Swal.fire({icon: 'success', text:'Successfully Joined'})
                 localStorage.setItem('token', data.jwt)
                 this.props.authenticateUser(data)
                 this.props.history.push('/dashboard')
             }else {
-                alert(data.message)
+                Swal.fire({icon: 'error', text: data.message.join(', ')})
             }
             this.setState({
                 name: '',

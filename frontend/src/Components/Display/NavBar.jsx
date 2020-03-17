@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logOut} from '../../Actions/userActions'
+import Swal from 'sweetalert2'
 
 class NavBar extends Component {
 
     handleOnClick = () => {
         localStorage.clear()
         this.props.logOut()
+        Swal.fire({icon: 'success', text: 'Successful Log Out'})
     }
 
     render() {

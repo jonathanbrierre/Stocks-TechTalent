@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import {updateUser} from '../../../Actions/userActions'
 import {Form, Button} from 'semantic-ui-react'
+import Swal from 'sweetalert2'
+
 class Result extends Component {
     state = {
         quantity: ''
@@ -14,12 +16,12 @@ class Result extends Component {
 
     handleOnClick = (e) =>{
         if(this.state.quantity <= 0){
-            alert('Please put a valid quantity')
+            Swal.fire({icon: 'error', text: 'Please put a valid quantity'})
             return
         }
 
         if(this.props.user.cash > (this.props.stock.latestPrice * this.state.quantity).toFixed(2)){
-            fetch(`http://localhost:3000/buy`,{
+            fetch(`https://tech-talent-stocks.herokuapp.com/buy`,{
                 method: 'PATCH',
                 headers:{
                     'Authorization': `bearer ${this.props.token}`,
@@ -34,10 +36,10 @@ class Result extends Component {
             .then(resp => resp.json())
             .then(user =>{
                 this.props.updateUser(user)
-                alert('Successfully bough stock!')
+                Swal.fire({icon: 'success', text: 'Successfully bough stock!'})
             })
         }else {
-            alert('Price per quantity exceeds available balance. Buy less.')
+            Swal.fire({icon: 'error', text: 'Price per quantity exceeds available balance. Buy less.'})
         }
     }
 

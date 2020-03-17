@@ -5,6 +5,8 @@ export class Stock extends Component {
         color: ''
     }
     componentDidMount(){
+        // Changes the colors of stocks dynamically
+        //May not work effectively is API returns null for open/close
         fetch(`https://cloud.iexapis.com/stable/stock/${this.props.stock.symbol}/quote?token=pk_ea86410582414536bef212f60b3d7975`)
         .then(resp => resp.json())
         .then(data =>{
