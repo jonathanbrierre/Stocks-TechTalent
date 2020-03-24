@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Form, Button} from 'semantic-ui-react'
+import Swal from 'sweetalert2'
+
 class TickerSearch extends Component {
     state = {
         ticker: ''
@@ -23,7 +25,7 @@ class TickerSearch extends Component {
             this.props.getStock(data)
         })
         .catch(error => {
-            alert('Invalid Ticker Symbol')
+            Swal.fire({icon: 'error', text: 'Invalid Ticker Symbol'})
         })
 
         this.setState({ticker: ''})
