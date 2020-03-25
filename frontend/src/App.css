@@ -11,3 +11,7 @@
     color: blue;
     cursor: pointer;
 }
+
+li {
+    list-style-type: none;
+}

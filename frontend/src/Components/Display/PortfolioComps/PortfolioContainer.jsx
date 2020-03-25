@@ -2,16 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Stock } from './Stock'
 import NavBar from '../NavBar'
+import ColorIndex from './ColorIndex'
 
 
 class PortfolioContainer extends Component {
 
     render() {
         return (
-            <div style = {{paddingLeft: '5vw'}}>
+            <div >
                 <NavBar/>
                 <h2>Portfolio</h2>
-                {this.props.stocks.map(stock => <Stock key = {stock.id} stock = {stock}/>)}
+                <div style = {{paddingLeft: '5vw'}}>
+                    {this.props.stocks.map(stock => <Stock key = {stock.id} stock = {stock}/>)}
+                </div>
+                <ColorIndex/>
             </div>
         )
     }
