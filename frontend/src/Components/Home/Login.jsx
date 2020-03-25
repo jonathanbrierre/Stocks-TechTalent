@@ -17,7 +17,7 @@ class Login extends Component {
 
     handleOnSubmit = e => {
         e.preventDefault()
-        fetch('https://tech-talent-stocks.herokuapp.com/login',{
+        fetch('https://fierce-shore-17893.herokuapp.com/https://tech-talent-stocks.herokuapp.com/login',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -27,6 +27,7 @@ class Login extends Component {
         })
         .then(resp => resp.json())
         .then(data => {
+            console.log(data)
             if(data.user){
                 Swal.fire({icon: 'success', text:'Successfully Log In'})
                 this.props.authenticateUser(data)

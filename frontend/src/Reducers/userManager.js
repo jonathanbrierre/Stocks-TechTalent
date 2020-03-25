@@ -13,6 +13,7 @@ export default function userManager(state = initialState, action){
             return initialState
 
         case 'UPDATE_CASH':
+            console.log(action.payload.user)
             return{...state, userObj: action.payload.user, stocks: action.payload.stocks, transactions: action.payload.transactions}
             
         default:

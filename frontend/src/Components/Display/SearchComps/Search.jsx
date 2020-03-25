@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
+
 import TickerSearch from './TickerSearch'
 import Result from './Result'
 import NavBar from '../NavBar'
+
 class Search extends Component {
 
     state = {
@@ -19,7 +20,7 @@ class Search extends Component {
     }
 
     render() {
-        
+        console.log(this.props)
         return (
             <div>
                 <NavBar/>

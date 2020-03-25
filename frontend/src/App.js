@@ -14,6 +14,7 @@ import TransactionContainer from './Components/Display/TransactionComps/Transact
 class App extends React.Component{
 
   componentDidMount(){
+    
     if(localStorage.getItem('token')){
         let token = localStorage.getItem('token')
         fetch('https://tech-talent-stocks.herokuapp.com/persist',{
@@ -41,6 +42,8 @@ class App extends React.Component{
   }
 
     render(){
+      console.log();
+      
       return (
       <div className="App">
         <Switch>

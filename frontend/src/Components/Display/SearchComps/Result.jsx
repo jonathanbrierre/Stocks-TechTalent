@@ -21,7 +21,7 @@ class Result extends Component {
         }
 
         if(this.props.user.cash > (this.props.stock.latestPrice * this.state.quantity).toFixed(2)){
-            fetch(`https://tech-talent-stocks.herokuapp.com/buy`,{
+            fetch(`https://fierce-shore-17893.herokuapp.com/https://tech-talent-stocks.herokuapp.com/buy`,{
                 method: 'PATCH',
                 headers:{
                     'Authorization': `bearer ${this.props.token}`,
@@ -35,6 +35,7 @@ class Result extends Component {
             })
             .then(resp => resp.json())
             .then(user =>{
+                console.log(user)
                 this.props.updateUser(user)
                 Swal.fire({icon: 'success', text: 'Successfully bough stock!'})
             })

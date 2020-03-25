@@ -19,7 +19,7 @@ class SignUp extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         // console.log(this.state)
-        fetch(`https://tech-talent-stocks.herokuapp.com/signup`, {
+        fetch(`https://fierce-shore-17893.herokuapp.com/http://tech-talent-stocks.herokuapp.com/signup`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -34,7 +34,7 @@ class SignUp extends Component {
                 localStorage.setItem('token', data.jwt)
                 this.props.authenticateUser(data)
                 this.props.history.push('/dashboard')
-            }else {
+            }else if(data.message) {
                 Swal.fire({icon: 'error', text: data.message.join(', ')})
             }
             this.setState({
