@@ -5,6 +5,9 @@ import {authenticateUser} from '../../Actions/userActions'
 import {withRouter} from 'react-router-dom'
 import Swal from 'sweetalert2'
 
+
+const realUrl = 'https://fierce-shore-17893.herokuapp.com/https://tech-talent-stocks.herokuapp.com/signup'
+const testUrl = 'http://localhost:3000/signup'
 class SignUp extends Component {
     state = {
         name: '',
@@ -19,7 +22,7 @@ class SignUp extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         // console.log(this.state)
-        fetch(`https://fierce-shore-17893.herokuapp.com/http://tech-talent-stocks.herokuapp.com/signup`, {
+        fetch(realUrl, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
