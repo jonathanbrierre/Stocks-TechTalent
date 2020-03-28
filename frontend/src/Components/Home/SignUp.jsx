@@ -40,11 +40,6 @@ class SignUp extends Component {
             }else if(data.message) {
                 Swal.fire({icon: 'error', text: data.message.join(', ')})
             }
-            this.setState({
-                name: '',
-                password: '',
-                email: ''
-            })
         })
     }
 
